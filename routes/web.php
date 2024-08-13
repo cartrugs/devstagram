@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,18 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Ruta del index
 Route::get('/', function () {
     return view('principal');
 });
 
-Route::get('/nosotros', function () {
-    return view('nosotros');
-});
+// Rutas para crear una cuentra
+Route::get('/crear-cuenta', [RegisterController::class, 'index']);
+Route::post('/crear-cuenta', [RegisterController::class, 'store']);
 
-Route::get('/tienda', function () {
-    return view('tienda');
-});
 
-// Route::get('/contacto', function () {
-//     return view('contacto');
-// });
+// Ruta para autenticar al usuario
+// Route::get('/crear-cuenta', [RegisterController::class, 'autenticar']);
