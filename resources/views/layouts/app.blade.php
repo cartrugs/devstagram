@@ -5,9 +5,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+        {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
         <title>DevStagram - @yield('titulo')</title>
         {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+        {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
         @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
         @vite('resources/js/app.js')
 
     </head>
@@ -39,11 +42,31 @@
         </main>
 
         {{-- 
+            </div>
+        </header>
+
+        <main class="container mx-auto mt-10">
+            <h2 class="font-black text-center text-3xl mb-10">
+                <!-- Directiva "yield" registra como un contenedor -->
+                @yield('titulo')
+            </h2>
+            @yield('contenido')
+        </main>
+
+        {{-- 
         <h1 class="text-4xl font-extrabold">@yield('titulo')<h1>
 
         <!-- Imprime una línea -->
         <hr>
 
+        @yield('contenido') --}}
+
+        <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
+            DevStagram - Todos los derechos reservados {{-- Fecha actual con Helper now()--}} {{ now()->year }}
+        </footer>
+
+        
+        
         @yield('contenido') --}}
 
         <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">

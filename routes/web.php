@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Ruta del index
+// Ruta del index
 Route::get('/', function () {
     return view('principal');
 });
