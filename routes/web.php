@@ -19,9 +19,9 @@ Route::get('/', function () {
     return view('principal');
 });
 
-// Rutas para crear una cuentra
-Route::get('/crear-cuenta', [RegisterController::class, 'index']);
-Route::post('/crear-cuenta', [RegisterController::class, 'store']);
+// Rutas para crear una cuentra index y store
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
 
 
 // Ruta para autenticar al usuario

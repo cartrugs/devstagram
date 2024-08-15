@@ -11,7 +11,7 @@
         </div>
 
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
-            <form action="/crear-cuenta" method="POST">
+            <form action={{ route('register') }} method="POST" novalidate>
                 @csrf
                 <div class="mb-5">
                     <label for="name" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -22,8 +22,13 @@
                         name="name"
                         type="text"
                         placeholder="Tu Nombre"
-                        class="border p-3 w-full rounded-lg"
+                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                        value="{{ old('name') }}"
                     >
+
+                    @error('name')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
                     <label for="username" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -36,6 +41,9 @@
                         placeholder="Tu Nombre de Usuario"
                         class="border p-3 w-full rounded-lg"
                     >
+                    @error('username')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
                     <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -48,6 +56,9 @@
                         placeholder="Email de Registro"
                         class="border p-3 w-full rounded-lg"
                     >
+                    @error('email')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
                     <label for="password" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -60,6 +71,9 @@
                         placeholder="Password de Registro"
                         class="border p-3 w-full rounded-lg"
                     >
+                    @error('password')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
                     <!-- Utilizando confirmation, Laravel registra automáticamente la repetición del password -->
