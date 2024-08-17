@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -17,6 +20,9 @@ class RegisterController extends Controller
     {
         // dd($request);
 
+        // Modificación del request para que no haya dos usuarios iguales. slug convierte una cadena a una sin espacios, minúsculas y separada por guiones
+        $request->request->add(['username' => Str::slug($request->username)]);
+
         // Validación
         $this->validate($request, [
             'name' => 'required|string|min:2|max:30',
@@ -26,8 +32,28 @@ class RegisterController extends Controller
             'password' => 'required|confirmed|string|min:8',
         ]);
 
-        dd('Creando Usuario');
-        
+        // Método estático 
+        User::create([
+           'name' => $request->name,
+           'username' => $request->username,
+           'email' => $request->email,
+           'password' => Hash::make( $request->password )
+        ]);
+
+
+        // Autenticar un usuario con attempt
+        // auth()->attempt([
+        //     'email' => $request->email,
+        //     'password' => $request->password
+        // ]);
+
+        // Otra forma de autenticar
+        auth()->attempt($request->only('email', 'password'));
+
+
+        // Redireccionar con helper redirect
+        return redirect()->route('posts.index');
+
     }
 
 }
