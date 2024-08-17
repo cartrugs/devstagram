@@ -22,8 +22,12 @@ class RegisterController extends Controller
             'name' => 'required|string|min:2|max:30',
             'username' => 'required|unique:users|string|min:3|max:20',
             'email' => 'required|email|unique:users|max:60',
-            'password' => 'required|string|min:8',
+            // confirmed hace que en el campo repetir password, verifique si coincide. En caso contrario lanza una advertencia
+            'password' => 'required|confirmed|string|min:8',
         ]);
+
+        dd('Creando Usuario');
+        
     }
 
 }

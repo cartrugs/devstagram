@@ -67,14 +67,6 @@
 
         
         
-        @yield('contenido') --}}
-
-        <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
-            DevStagram - Todos los derechos reservados {{-- Fecha actual con Helper now()--}} {{ now()->year }}
-        </footer>
-
-        
-        
 
     </body>
 
