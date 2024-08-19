@@ -4,13 +4,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-        {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
         <title>DevStagram - @yield('titulo')</title>
         {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
         {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
         @vite('resources/css/app.css')
-        @vite('resources/js/app.js')
         @vite('resources/js/app.js')
 
     </head>
@@ -22,13 +19,31 @@
                 <h1 class="text-3xl font-black">
                 DevStagram
                 </h1>
+
+                {{-- Comprueba si se ha autenticado o no --}}
+                @auth
+                    <nav class="flex gap-2 items-center">
+                        <a href={{ route('login') }} class="font-bold text-gray-600 text-sm" >
+                            Hola: <span class="font-normal"> {{ auth()->user()->username }}
+                                </span></a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="font-bold uppercase text-gray-600 text-sm" >
+                            Cerrar Sesión</button>
+                        </form>
+                        
+                    </nav>
+                @endauth
+
+                @guest
+                    <nav class="flex gap-2 items-center">
+                        <a href={{ route('login') }} class="font-bold uppercase text-gray-600 text-sm" >Login</a>
+                        <a href={{ route('register') }} class="font-bold uppercase text-gray-600 text-sm" >Crear Cuenta</a>
+                    </nav>
+                @endguest
+
                 
-                <nav class="flex gap-2 items-center">
-                    <a href="#" class="font-bold uppercase text-gray-600 text-sm" >Login</a>
-                    <a href={{ route('register') }} class="font-bold uppercase text-gray-600 text-sm" >Crear Cuenta</a>
-                    {{-- <a href="/tienda">Tienda</a>
-                    <a href="/contacto">Contacto</a> --}}
-                </nav>
+                
 
             </div>
         </header>
