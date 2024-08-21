@@ -36,6 +36,8 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
 // Ruta para crear posts del usuario
 Route::get('/post/create', [PostController::class, 'create'])->name('posts.create');
+// Ruta para almacenar los posts del usuario
+Route::post('/post', [PostController::class, 'store'])->name('posts.store');
 
 // Ruta para subir imagenes (posts del usuario)
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');

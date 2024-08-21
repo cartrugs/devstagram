@@ -26,4 +26,13 @@ class PostController extends Controller
         // dd('Creando Post...');
         return view('posts.create');
     }
+
+    public function store(Request $request)
+    {
+        // dd('Creando publicación...');
+        $this->validate($request, [
+            'titulo' => 'required|max:255',
+            'descripcion' =>'required'
+        ]);
+    }
 }
