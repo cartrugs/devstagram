@@ -32,7 +32,8 @@ class PostController extends Controller
         // dd('Creando publicación...');
         $this->validate($request, [
             'titulo' => 'required|max:255',
-            'descripcion' =>'required'
+            'descripcion' =>'required',
+            'imagen' => 'required'
         ]);
     }
 }

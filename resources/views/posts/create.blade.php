@@ -59,6 +59,18 @@
                     @enderror
                 </div>
 
+                <div class="mb-5">
+                    <input 
+                        {{-- Asignación del mismo nombre: name="imagen" que se le da en la tabla posts --}}
+                        name="imagen" 
+                        type="hidden"
+                        value={{ old('imagen') }}
+                    >
+                        @error('imagen')
+                            <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                        @enderror
+                </div>
+
                 <input
                     type="submit"
                     value="Publicar"
