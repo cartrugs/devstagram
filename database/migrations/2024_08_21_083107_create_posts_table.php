@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        // Relación entre posts user_id
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');

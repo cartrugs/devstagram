@@ -43,4 +43,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Método para relacionar posts y usuarios (llama al modelo: Post) (ver tabla posts)
+    public function posts() {
+        // Relación usuario posts: hasMany= One to many
+        return $this->hasMany(Post::class);
+    }
+
 }

@@ -45,13 +45,22 @@ class PostController extends Controller
         //     'user_id' => auth()->user()->id
         // ]);
 
-        // Segunda forma de guardar registros en DB
-        $post = new Post;
-        $post->titulo = $request->titulo;
-        $post->descripcion = $request->descripcion;
-        $post->imagen = $request->imagen;
-        $post->user_id = auth()->user()->id;
-        $post->save();
+        // Segunda forma para guardar registros en DB
+        // $post = new Post;
+        // $post->titulo = $request->titulo;
+        // $post->descripcion = $request->descripcion;
+        // $post->imagen = $request->imagen;
+        // $post->user_id = auth()->user()->id;
+        // $post->save();
+
+        // Tercera forma para guardar registros
+        // Accede al usuario, al posts, y crea el registro en la relación
+        $request->user()->posts()->create([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'imagen' => $request->imagen,
+            'user_id' => auth()->user()->id
+        ]);
 
         return redirect()->route('posts.index', auth()->user()->username);
     }
