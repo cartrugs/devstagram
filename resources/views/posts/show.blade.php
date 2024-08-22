@@ -27,7 +27,9 @@
             <!-- Para mostrar el formulario para eliminar se comprueba si está autenticado y si se es dueño de ese post --> 
             @auth
                 @if($post->user_id === auth()->user()->id)
-                    <form action="">
+                    <form method="POST" action="{{ route('posts.destroy', $post)}}"> 
+                        <!-- Método spoofing -->
+                        @method('DELETE')
                         @csrf
                         <input 
                             type="submit"
