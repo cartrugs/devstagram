@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('show', 'index');
     }
 
     public function index(User $user)
@@ -73,7 +73,8 @@ class PostController extends Controller
     {
         // dd('Mostrando Post...');
         return view('posts.show', [
-            'post' => $post
+            'post' => $post,
+            'user' => $user
         ]);
     }
 }

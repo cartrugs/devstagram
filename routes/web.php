@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComentarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
@@ -40,6 +41,9 @@ Route::get('/post/create', [PostController::class, 'create'])->name('posts.creat
 Route::post('/post', [PostController::class, 'store'])->name('posts.store');
 // Ruta para obtener el post y mostrarlo. {post} mapea e identifica el post sobre el que se está pulsando
 Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+// Ruta para alamacenar comentarios
+Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'store'])->name('comentarios.store');
 
 // Ruta para subir imagenes (posts del usuario)
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
