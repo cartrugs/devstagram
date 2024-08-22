@@ -50,6 +50,10 @@
             @endforeach
         </div>
 
+        <div class="my-10">
+            {{ $posts->links('pagination::tailwind') }}
+        </div>
+
         <!-- Si no hay posts se muestra este párrafo en el servidor -->
         @else
             <p class="text-gray-600 uppercase text-sm text-center font-bold">No hay posts</p>
