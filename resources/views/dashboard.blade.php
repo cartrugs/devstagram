@@ -43,7 +43,9 @@
         <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             @foreach ($posts as $post)
                 <div>
-                    <a href="">
+                    <!-- Se obtiene la vista de posts y captura aquél que se quire mostrar. $post es un objeto al que se itera -->
+                    <!-- Se utiliza un segundo parámetro para añadir el usuario. La varieble $user está definida en este template y permite usarla en todo el template -->
+                    <a href="{{ route('posts.show', ['post' => $post, 'user' => $user]) }}">
                         <img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Imagen del post {{ $post->titulo }}">
                     </a>
                 </div>

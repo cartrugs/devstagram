@@ -38,6 +38,8 @@ Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.in
 Route::get('/post/create', [PostController::class, 'create'])->name('posts.create');
 // Ruta para almacenar los posts del usuario
 Route::post('/post', [PostController::class, 'store'])->name('posts.store');
+// Ruta para obtener el post y mostrarlo. {post} mapea e identifica el post sobre el que se está pulsando
+Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 // Ruta para subir imagenes (posts del usuario)
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
