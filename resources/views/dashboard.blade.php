@@ -10,7 +10,13 @@
     <div class="flex justify-center"> 
         <div class="w-full md:w-8/12 lg:w-6/12 flex flex-col items-center md:flex-row">
             <div class="w-8/12 lg:w-6/12 px-5">
-                <img src="{{ asset('img/usuario.svg') }}" alt="Espacio para que el usuario pueda añadir su imagen">
+                <!-- Ternaria para mostrar foto de perfilen caso de que exista y en caso contrario mostar icono usuario -->
+                <img src="{{ 
+                    $user->imagen ? 
+                    asset('perfiles') . '/' . $user->imagen : 
+                    asset('img/usuario.svg') 
+                    }}" 
+                    alt="Espacio para que el usuario pueda añadir su imagen">
             </div>
             <div class="md:w-8/12 lg:w-6/12 px-5 flex flex-col items-center md:justify-center md:items-start py-10 md:py:10">
                 {{-- Imprime el nombre del usuario --}}
