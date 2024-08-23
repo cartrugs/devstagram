@@ -34,7 +34,7 @@
                         name="titulo"
                         type="text"
                         placeholder="Título de la Publicación"
-                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                        class="border p-3 w-full rounded-lg @error('titulo') border-red-500 @enderror"
                         value="{{ old('titulo') }}"
                     >
 
@@ -51,7 +51,7 @@
                         id="descripcion"
                         name="descripcion"
                         placeholder="Descripción de la Publicación"
-                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                        class="border p-3 w-full rounded-lg @error('descripcion') border-red-500 @enderror"
                     >{{ old('descripcion') }}</textarea>
 
                     @error('descripcion')

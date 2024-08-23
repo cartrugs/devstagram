@@ -102,7 +102,7 @@
                             id="comentario"
                             name="comentario"
                             placeholder="Agrega un comentario"
-                            class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                            class="border p-3 w-full rounded-lg @error('comentario') border-red-500 @enderror"
                         ></textarea>
     
                         @error('comentario')
