@@ -16,4 +16,17 @@ class LikeController extends Controller
 
         return back();
     }
+
+    // Método para eliminar un like
+    public function destroy(Request $request, Post $post)
+    {
+        // dd('Eliminando like...');
+
+        // En $request va el usuario, el cual tiene los likes, que a su vez está asociado al modelo para por último filtar el piost en el que se desea eliminar el like
+        $request->user()->likes()->where('post_id', $post->id)->delete();
+
+        return back();
+
+    }
+
 }

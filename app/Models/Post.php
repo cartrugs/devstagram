@@ -28,14 +28,21 @@ class Post extends Model
     public function comentarios()
     {
         // Relación: hasMany= One to many
-        return $this->hasMany((Comentario::class));
+        return $this->hasMany(Comentario::class);
     }
 
     // Un post puede tener múltiples likes
     public function likes()
     {
         // Relación: hasMany= One to many
-        return $this->hasMany((Like::class));
+        return $this->hasMany(Like::class);
+    }
+
+    // Se revisa si un usuario ya dio like para evitar likes duplicados del mismo usuario
+    public function checkLike(User $user)
+    {
+        // contains revisa (las columnas de la tabla) y se posiciona en la tabla likes y comprueba si user_id contiene $user->id 
+        return $this->likes->contains('user_id', $user->id);
     }
 
 }
