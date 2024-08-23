@@ -91,7 +91,9 @@
             DevStagram - Todos los derechos reservados {{-- Fecha actual con Helper now()--}} {{ now()->year }}
         </footer>
 
-        
+        {{-- @vite('resources/js/app.js') --}}
+
+        @stack('scripts')
         
 
     </body>

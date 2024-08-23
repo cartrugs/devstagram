@@ -4,10 +4,10 @@
     Crea una nueva Publicación
 @endsection
 
-@push('styles')
+{{-- @push('styles')
     <!-- Dropzone link -->
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-@endpush
+@endpush --}}
 
 
 @section('contenido')
@@ -81,3 +81,8 @@
     </div>
 
 @endsection
+
+@push('styles')
+    <!-- Dropzone link -->
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+@endpush

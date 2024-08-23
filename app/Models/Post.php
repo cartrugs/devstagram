@@ -30,4 +30,12 @@ class Post extends Model
         // Relación: hasMany= One to many
         return $this->hasMany((Comentario::class));
     }
+
+    // Un post puede tener múltiples likes
+    public function likes()
+    {
+        // Relación: hasMany= One to many
+        return $this->hasMany((Like::class));
+    }
+
 }
