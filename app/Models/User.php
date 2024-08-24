@@ -57,4 +57,20 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    // Almacenar los seguidores de un usuario
+    public function followers()
+    {
+        // Relación entre usuarios: Un usuario puede tener muchos seguidores (followers).
+        // Esta relación es de tipo "muchos a muchos" entre la tabla de usuarios y la tabla intermedia 'followers'.
+        // El método 'belongsToMany' establece que la relación utiliza una tabla pivote (followers) para asociar usuarios.
+        // El primer parámetro 'User::class' indica que la relación es con la misma tabla de usuarios (auto-relación).
+        // El segundo parámetro 'followers' especifica el nombre de la tabla pivote que contiene las asociaciones entre usuarios y seguidores.
+        // El tercer parámetro 'user_id' define la clave foránea en la tabla 'followers' que hace referencia al usuario seguido.
+        // El cuarto parámetro 'follower_id' define la clave foránea en la tabla 'followers' que hace referencia al usuario que sigue (seguidor).
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+
+    }
+
+    // Almacenar los que siguen
+
 }

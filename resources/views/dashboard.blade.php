@@ -10,7 +10,7 @@
     <div class="flex justify-center"> 
         <div class="w-full md:w-8/12 lg:w-6/12 flex flex-col items-center md:flex-row">
             <div class="w-8/12 lg:w-6/12 px-5">
-                <!-- Ternaria para mostrar foto de perfilen caso de que exista y en caso contrario mostar icono usuario -->
+                <!-- Ternaria para mostrar foto de perfil en caso de que exista y en caso contrario mostar icono usuario -->
                 <img src="{{ 
                     $user->imagen ? 
                     asset('perfiles') . '/' . $user->imagen : 
@@ -51,6 +51,38 @@
                     {{ $user->posts->count() }}
                     <span class="font-normal"> Posts</span>
                 </p>
+
+                <!-- Solamente podrán seguir a usuarios, los usuarios que hayan iniciado sesión -->
+                @auth
+                    @if($user->id !== auth()->user()->id)
+                        <form
+                        {{-- $user pasa el usuario al que se visita el perfil, y no es el usuario autenticado --}}
+                            action="{{ route('users.follow', $user) }}"
+                            method="POST"
+                        >
+                            @csrf
+                            <input type="submit"
+                            class="bg-blue-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer"
+                            value="Seguir"
+                        >
+                        </form>
+                    
+                    <!--  -->
+                        <form 
+                            {{-- action=""
+                            method="POST" --}}
+                        >
+                            <!-- Método spoofing -->
+                            {{-- @method('DELETE') --}}
+                            @csrf
+                            <input type="submit"
+                            class="bg-red-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer"
+                            value="Dejar de Seguir"
+                        >
+                        </form>
+                    @endif
+                @endauth
+
             </div>
 
         </div>
