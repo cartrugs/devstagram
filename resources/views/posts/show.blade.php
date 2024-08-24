@@ -44,7 +44,8 @@
 
                 <!-- Debido a que el modelo de post incluye likes, Laravel automáticamente asocia el método count() -->
                 <p class="font-bold">{{ $post->likes->count() }} 
-                    <span class="font-normal">Likes</span>
+                    <!-- choice se utiliza para que determine si hay uno usar singular (Like) y si hay más de uno usar plural (Likes) -->
+                    <span class="font-normal">@choice('Like|Likes', $post->likes->count())</span>
                 </p>
             </div>
 

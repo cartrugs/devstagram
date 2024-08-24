@@ -39,9 +39,10 @@
                 </div>
 
                 <p class="text-gray-800 text-sm mb-3 font-bold mt-5">
-                    0
-                    <span class="font-normal"> Seguidores</span>
-                </p>
+                    {{ $user->followers->count() }}
+                    <!-- choice se utiliza para que determine si hay uno usar singular (Seguidor) y si hay más de uno usar plural (Seguidores) -->
+                    <span class="font-normal"> @choice('Seguidor|Seguidores', $user->followers->count() )</span>
+                </p> 
                 <p class="text-gray-800 text-sm mb-3 font-bold">
                     0
                     <span class="font-normal"> Siguiendo</span>
@@ -49,37 +50,42 @@
                 <p class="text-gray-800 text-sm mb-3 font-bold">
                     <!-- Laravel automáticamente asocia el método count() -->
                     {{ $user->posts->count() }}
-                    <span class="font-normal"> Posts</span>
+                    <!-- choice se utiliza para que determine si hay uno usar singular (Post) y si hay más de uno usar plural (Posts) -->
+                    <span class="font-normal">@choice('Post|Posts', $user->posts->count())</span>
                 </p>
 
                 <!-- Solamente podrán seguir a usuarios, los usuarios que hayan iniciado sesión -->
                 @auth
-                    @if($user->id !== auth()->user()->id)
-                        <form
-                        {{-- $user pasa el usuario al que se visita el perfil, y no es el usuario autenticado --}}
-                            action="{{ route('users.follow', $user) }}"
-                            method="POST"
-                        >
-                            @csrf
-                            <input type="submit"
-                            class="bg-blue-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer"
-                            value="Seguir"
-                        >
-                        </form>
-                    
-                    <!--  -->
-                        <form 
-                            {{-- action=""
-                            method="POST" --}}
-                        >
-                            <!-- Método spoofing -->
-                            {{-- @method('DELETE') --}}
-                            @csrf
-                            <input type="submit"
-                            class="bg-red-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer"
-                            value="Dejar de Seguir"
-                        >
-                        </form>
+                    @if( $user->id !== auth()->user()->id )
+                        {{-- $user es el usuario al que se visita (visitado), tras el @auth, user es el que visita (visitante) --}}
+                        @if ( !$user->siguiendo( auth()->user() ) )
+                            <form
+                            {{-- $user pasa el usuario al que se visita el perfil, y no es el usuario autenticado --}}
+                                action="{{ route('users.follow', $user) }}"
+                                method="POST"
+                            >
+                                @csrf
+                                <input type="submit"
+                                class="bg-blue-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer"
+                                value="Seguir"
+                            >
+                            </form>
+                        @else
+                            <!--  -->
+                            <form
+                                {{-- $user pasa el usuario al que se visita el perfil, y no es el usuario autenticado --}}
+                                action="{{ route('users.unfollow', $user) }}"
+                                method="POST"
+                            >
+                                <!-- Método spoofing -->
+                                @method('DELETE')
+                                @csrf
+                                <input type="submit"
+                                class="bg-red-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer"
+                                value="Dejar de Seguir"
+                            >
+                            </form>
+                        @endif
                     @endif
                 @endauth
 

@@ -20,4 +20,16 @@ class FollowerController extends Controller
 
         return back();
     }
+
+    public function destroy(User $user, Request $request)
+    {
+        // Establece una relación de "muchos a muchos" entre el usuario actual y otro usuario (seguido).
+        // El método 'attach' añade una nueva entrada en la tabla pivote 'followers' para representar que el usuario autenticado (auth()->user())
+        // sigue al usuario especificado por '$user'.
+        // En este caso, 'auth()->user()->id' se refiere al ID del usuario que está iniciando la acción (el seguidor).
+        // Este método actualiza la tabla pivote 'followers', asignando el 'follower_id' (ID del usuario autenticado) al 'user_id' (ID del usuario seguido).
+        $user->followers()->detach( auth()->user()->id );
+
+        return back();
+    }
 }
