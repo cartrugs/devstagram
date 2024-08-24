@@ -10,6 +10,7 @@ use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +23,13 @@ use App\Http\Controllers\FollowerController;
 |
 */
 
-// Ruta del index
-Route::get('/', function () {
-    return view('principal');
-});
+// Ruta del index tipo closure
+// Route::get('/', function () {
+//     return view('principal');
+// });
+
+// Ruta del index con controlador
+Route::get('/', HomeController::class)->name('home');
 
 // Rutas para crear una cuentra index y store
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
