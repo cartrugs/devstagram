@@ -71,13 +71,19 @@ class User extends Authenticatable
 
     }
 
+    // Almacenar los que siguen
+    public function followings()
+    {
+        // Relación entre usuarios: Un usuario puede seguir a muchos usuarios.
+        // Esta relación es de tipo "muchos a muchos" entre la tabla de usuarios y la tabla intermedia 'followers'.
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
     // Comprobar si un usuario ya sigue a otro
     public function siguiendo(User $user)
     {
         // contains acede al método de followers y verifica si es usuario es seguidor ya de otro usuario retornando true o false, e iterando en la tabla de followers
         return $this->followers->contains( $user->id );
     }
-
-    // Almacenar los que siguen
 
 }
