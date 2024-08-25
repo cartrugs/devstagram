@@ -13,6 +13,11 @@
                 <!-- Para mostrar el formulario para dar like se comprueba si está autenticado --> 
                 @auth
 
+                    @php
+                        $mensaje = "Hola Mundo desde una variable";
+                    @endphp
+                    <livewire:like-post :post="$post" />
+
                     @if( $post->checkLike(auth()->user() ))
                         <form method="POST" action="{{ route('posts.likes.destroy', $post) }}">
                             <!-- Método spoofing -->
